@@ -22,9 +22,9 @@ class Data:
         return country_names_codes[1:]
 
     # function returning Big Mac data for one country (type: Pandas DataFrame)
-    def get_big_mac_data(self, country_code):
+    def get_big_mac_data(self, code):
         quandl.ApiConfig.api_key = self.key
-        one_country_big_mac = quandl.get(f'ECONOMIST/BIGMAC_{country_code}')
+        one_country_big_mac = quandl.get(f'ECONOMIST/BIGMAC_{code}')
 
         return one_country_big_mac
 
@@ -36,7 +36,7 @@ class Data:
             country_name = country[0]
             country_code = country[1] 
 
-            one_country_data = get_function(self.key, country_code)
+            one_country_data = get_function(country_code)
             one_country_data['country'] = country_name
 
             list_of_big_mac_data.append(one_country_data)
